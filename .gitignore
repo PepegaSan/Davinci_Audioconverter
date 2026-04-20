@@ -1,0 +1,49 @@
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- Build / packaging artefacts --------------------------------------------
+build/
+dist/
+# PyInstaller generates auxiliary *.spec files. Our curated build recipe
+# ``DavinciAutoAudioconverter.spec`` is committed; anything else generated
+# beside it (e.g. test builds) stays out.
+*.spec
+!DavinciAutoAudioconverter.spec
+
+# --- Editor / OS --------------------------------------------------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# --- Local-only folders ------------------------------------------------------
+# Design kit is a reference copy, not part of the shipped project.
+design_kit/
+
+# --- Third-party binaries the user has to download themselves ----------------
+# DeepFilterNet standalone CLI. Far too large for git and its licence is
+# on the upstream project, not ours. README Setup step 3 tells users where
+# to download it. Patterns are anchored to the repo root (leading "/") so
+# they match downloaded binaries without accidentally catching the
+# ``third_party/DeepFilterNet/`` folder that holds the MIT licence.
+/deep-filter.exe
+/deepFilter.exe
+/deep-filter-*.exe
+/deepFilter-*.exe
+/deep-filter
+/deepFilter
+/deep-filter-*
+/deepFilter-*
+/ffmpeg.exe
+/ffprobe.exe
+
+# --- Runtime artefacts (should never be committed) ---------------------------
+# Extracted / denoised WAVs the pipeline produces during a run.
+*.wav
+# Log dumps the user might copy out of the panel.
+*.log

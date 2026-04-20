@@ -1,0 +1,35 @@
+customtkinter>=5.2.2
+tkinterdnd2>=0.4.2
+
+# -- Audio preprocessing (Phase 0) --
+#
+# Two external tools are needed: FFmpeg (for audio extraction) and a
+# DeepFilterNet backend (for denoising). NEITHER is installed via this
+# requirements file — FFmpeg isn't a Python package at all, and
+# ``deepfilternet`` on PyPI routinely fails to build on Python 3.12+
+# because its ``deepfilterlib`` component needs the Rust toolchain to
+# compile from source. We ship neither to avoid a broken
+# ``pip install -r`` experience.
+#
+# RECOMMENDED: install as standalone binaries (no compilers needed).
+#
+#   FFmpeg
+#     Windows : winget install Gyan.FFmpeg
+#     macOS   : brew install ffmpeg
+#     Linux   : sudo apt install ffmpeg  (or your distro's equivalent)
+#     OR drop ``ffmpeg.exe`` next to ``main.py``.
+#
+#   DeepFilterNet standalone CLI (PREFERRED over the PyPI package)
+#     1. https://github.com/Rikorose/DeepFilterNet/releases
+#     2. Download e.g. deep-filter-<version>-x86_64-pc-windows-msvc.tar.gz
+#     3. Extract ``deep-filter.exe`` into this project folder (next to
+#        main.py) OR add its directory to PATH.
+#     The app auto-discovers it and calls it as a subprocess — zero
+#     Python / Rust dependencies.
+#
+# OPTIONAL: if you prefer the PyPI package AND have either a pre-built
+# wheel for your Python version or the Rust toolchain installed, you
+# can uncomment the next line. The app will pick up either the
+# ``deepFilter`` CLI it installs OR the ``df.enhance`` Python API.
+#
+# deepfilternet>=0.5.6
