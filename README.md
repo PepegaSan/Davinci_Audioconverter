@@ -374,16 +374,27 @@ For anything that survives the check:
 For a deeper connectivity check (Resolve API from the command line,
 no GUI involved), run `py -3 diag_scripting.py`.
 
-## Contributing / license
+## Licence
 
-This repository is published as-is. See individual third-party
-projects for their own licences:
+This project's own source code is released under the **MIT License** —
+see [LICENSE](LICENSE) for the full text. In short: use, modify,
+redistribute and fork freely, including commercially, as long as the
+copyright notice stays with the code.
 
-- **FFmpeg** — LGPL/GPL (depending on the build you install).
-- **DeepFilterNet** — check <https://github.com/Rikorose/DeepFilterNet>
-  for the current licence of the pre-compiled binary you download.
-- **DaVinci Resolve Scripting API** — Blackmagic Design; distributed
-  as part of DaVinci Resolve Studio.
+### Third-party components
 
-None of those binaries are committed to this repo; you install them
-yourself via the steps in **Setup**.
+The code depends on — and in the `--onedir` build, bundles — software
+with its own licence terms. None of these are committed to the repo as
+binaries; they're either downloaded by the user during setup or pulled
+in by PyInstaller at build time from a local install.
+
+| Component | Licence | Where it lives |
+|---|---|---|
+| **DeepFilterNet** CLI (`deep-filter.exe`) | MIT — © Hendrik Schröter et al. | `third_party/DeepFilterNet/LICENSE.txt` (upstream copy). Ships next to `DavinciAutoAudioconverter.exe` in the onedir bundle. |
+| **FFmpeg** | LGPL or GPL depending on the build you install | Not bundled — user installs locally via `winget install Gyan.FFmpeg` (or equivalent). |
+| **DaVinci Resolve Scripting API** | Blackmagic Design EULA | Not bundled — ships with DaVinci Resolve Studio. |
+| **CustomTkinter**, **tkinterdnd2**, **darkdetect** (pip deps) | MIT / BSD-2 / BSD-3 | Fetched by `pip install -r requirements.txt`. |
+
+When you redistribute an `--onedir` bundle (e.g. as a 7z/zip release),
+keep `third_party/DeepFilterNet/LICENSE.txt` next to the binary — that
+single file satisfies DeepFilterNet's redistribution clause.
